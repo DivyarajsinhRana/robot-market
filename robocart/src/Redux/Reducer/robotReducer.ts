@@ -24,7 +24,7 @@ const robotReducer = (state:robotresponseState=initialState,action : actionsType
         return{
             loading:false,
             robot:[],
-            errors:action.payload
+            errors:action.error
         }
         default :return state
     }

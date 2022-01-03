@@ -15,7 +15,7 @@ const getRobot_Success=(robot : robotData)=>{
 const getRobot_fail=(error: string)=>{
     return{
         type:"getrobot_fails",
-        payload:error
+        error:error
     }
 }
 

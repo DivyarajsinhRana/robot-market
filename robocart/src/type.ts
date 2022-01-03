@@ -10,22 +10,28 @@ export interface robotType {
 export type robotData = {
     robots : robotType[] ;
  }[]
-export type payload = string | robotData;
+
  export type actionsucType = {
      type : string
-     payload  ? : payload
+     payload   : robotData
+     error : string
  }
+//  export type actionfailType = {
+//      type : string
+//      error : string
+//  }
  
 
-//  export type requesttype = {
-//      type : string
-//  }
+ export type requesttype = {
+     type : string
+ }
 
- export type actionsType = actionsucType
+ export type actionsType = actionsucType 
   
 export type robotresponseState = {
     loading : boolean
     robot :  robotData
     errors: string 
 }
- export type DispatchType = (args: actionsType) => actionsType
+ export type DispatchType = (args: actionsType | requesttype ) => actionsType | requesttype 
+ 
