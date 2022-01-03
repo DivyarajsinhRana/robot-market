@@ -1,28 +1,28 @@
 import axios from "axios";
 import { useState,useEffect } from "react";
-type IRobot ={
-    image : string,
-    name : string,
-    price : number,
-    stock : number,
-    createdAt : Date,
-    material : string
-};
+import { useSelector, useDispatch } from 'react-redux'
+import baseURL from "../Api";
+import { fetchRobot } from "../Redux/Action/getRobot";
+// type IRobot ={
+//     image : string,
+//     name : string,
+//     price : number,
+//     stock : number,
+//     createdAt : Date,
+//     material : string
+// };
 
 const Robot = () => {
-    const [robot,setRobot] = useState<IRobot>({} as IRobot)
+     const dispatch = useDispatch()
+     const data = useSelector((state)=>state)
+     console.log(data);
     useEffect(()=>{
-      axios.get("http://localhost:8000/api/robots").then((res)=>setRobot(res.data)).catch((e)=>setRobot(e.message))
+    dispatch(fetchRobot(baseURL));
     },[])
     return (
         <>
-            {  
-                [robot].map((item ,index)=>{
-                    console.log(item); return (
-                         (<div key={index}>{item.createdAt}</div>) 
-                    )                     
-                })   
-            }
+           <div>data</div>
+
         </>
     )
 }
