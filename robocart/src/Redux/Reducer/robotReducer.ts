@@ -11,8 +11,9 @@ const robotReducer = (state:robotresponseState=initialState,action : actionsType
     switch(action.type){
         case "getrobot_Req":
             return{
-                ...state,
-                loading:true
+                loading:true,
+                robot:[],
+                errors:""
             }
         case "getrobot_Success":
             return{
@@ -20,12 +21,14 @@ const robotReducer = (state:robotresponseState=initialState,action : actionsType
                 robot:action.payload,
                 errors:""
             }
-        case "getrobot_fail":
+    case "getrobot_fail":{
+        console.log(action.error)
         return{
-            loading:false,
-            robot:[],
-            errors:action.error
-        }
+        loading:false,
+        robot:[],
+        errors:action.error
+    }
+    }
         default :return state
     }
 }

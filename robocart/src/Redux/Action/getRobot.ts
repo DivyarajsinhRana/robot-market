@@ -1,5 +1,5 @@
 import axios from "axios"
-import {robotType ,DispatchType, robotData} from  '../../type'
+import {robotType ,DispatchType, robotData, actionfailType, actionsucType, requesttype} from  '../../type'
 
 const getRobot_Req=() =>{
     return{
@@ -12,10 +12,10 @@ const getRobot_Success=(robot : robotData)=>{
         payload:robot
     }
 }
-const getRobot_fail=(error: string)=>{
+const getRobot_fail=(errors: actionfailType)=>{
     return{
         type:"getrobot_fails",
-        error:error
+        errors:errors
     }
 }
 
@@ -42,14 +42,15 @@ const fetchRobot=(url : string)=>{
             dispatch(getRobot_Req());
             axios.get(url)
             .then(
-                res=>{
-                    const product=res.data;
+               (res)=>{
+                    console.log(res);
+                    const product:robotData =res.data;
                     dispatch(getRobot_Success(product))
                 }
             ).catch(
-                error=>{
-                    const erroeMsg=error.message;
-                    dispatch(getRobot_fail(erroeMsg))
+                (error : actionfailType) =>{
+                    console.log(error);
+                    dispatch(getRobot_fail(error))
                 }
             )
     }

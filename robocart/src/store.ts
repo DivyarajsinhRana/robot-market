@@ -6,7 +6,8 @@ import  baseURL  from "./Api";
 import { actionsType, DispatchType, robotData,robotresponseState} from "./type";
 // import rootreducer from "./Redux/combinereducer";
 const store : Store<robotresponseState,actionsType> & { dispatch: DispatchType} = createStore(robotReducer,applyMiddleware(thunk));
-console.log(store.getState());
+
+// console.log(store.getState());
 
 // store.subscribe(()=>console.log(store.getState()))
 // // store.dispatch(fetchProduct());

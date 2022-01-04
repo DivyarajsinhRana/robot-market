@@ -7,31 +7,31 @@ export interface robotType {
     createdAt : Date
     material : string
 }
-export type robotData = {
-    robots : robotType[] ;
- }[]
+export type robotData = robotType[] ;
+ 
 
  export type actionsucType = {
      type : string
      payload   : robotData
-     error : string
+     error : any
  }
-//  export type actionfailType = {
-//      type : string
-//      error : string
-//  }
+ export type actionfailType = {
+     type : string
+     error : string 
+     payload : any
+ }
  
 
  export type requesttype = {
      type : string
  }
 
- export type actionsType = actionsucType 
+ export type actionsType = actionsucType | actionfailType
   
 export type robotresponseState = {
     loading : boolean
     robot :  robotData
     errors: string 
 }
- export type DispatchType = (args: actionsType | requesttype ) => actionsType | requesttype 
+ export type DispatchType = (args: actionsType | requesttype | actionfailType) => actionsType | requesttype | actionfailType
  
